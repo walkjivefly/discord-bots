@@ -1,0 +1,5 @@
+[GitlabUpdater]
+private_token:put_your_Gitlab_private_token
+base_url:https://your_gitlab_server/api/v4/projects/your_project_number/issues/
+bot_id:your_Discord_bot_id
+magic_string:##
