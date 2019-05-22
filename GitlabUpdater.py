@@ -25,22 +25,26 @@ async def on_message(message):
         return
 
     if message.content.startswith(magic_string):
-        everything = str(message.content)[2:].strip()
-        elist = everything.split(' ',1)
-        issue = elist[0]
-        if not issue.isnumeric():
-            response = 'Begin your comment with the issue number to update.'
+        print('Bot triggered in ' + str(message.channel) + ' by ' + str(message.author))
+        if str(message.channel) != 'gitlab-updater':
+            response = 'Bot is not enabled in this channel'
         else:
-            url = base_url + issue + '/notes'
-            msg = 'From ' + str(message.author) + ': ' + elist[1]
-            params = ( ('body', msg), )
-            response = str(requests.post(url, headers=headers, params=params))
-            if response == '<Response [404]>':
-                response = 'Issue not found.'
-            elif response == '<Response [201]>':
-                response = 'Issue updated successfully.'
+            everything = str(message.content)[2:].strip()
+            elist = everything.split(' ',1)
+            issue = elist[0]
+            if not issue.isnumeric():
+                response = 'Begin your comment with the issue number to update.'
             else:
-                response = 'Unexpected: ' + response
+                url = base_url + issue + '/notes'
+                msg = 'From ' + str(message.author) + ': ' + elist[1]
+                params = ( ('body', msg), )
+                response = str(requests.post(url, headers=headers, params=params))
+                if response == '<Response [404]>':
+                    response = 'Issue not found.'
+                elif response == '<Response [201]>':
+                    response = 'Issue updated successfully.'
+                else:
+                    response = 'Unexpected: ' + response
         await message.channel.send(response)
 
 client.run(bot_id)
