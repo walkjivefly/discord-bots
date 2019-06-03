@@ -49,13 +49,16 @@ Gitlab: TODO
 #### Configuration
 
 Copy Bots.ini.sample to Bots.ini and customise for your installation.
-There are 4 records in the GitlabUpdater section.
-| key | value |
-| ------------- | ----- |
+There are 6 records in the GitlabUpdater section.
+
+| key | value|
+|-|-|
 | private_token | the private token you created in your Gitlab account |
 | base_url | the base URL for the issues in your repository/project |
 | bot_id | the bot ID you got from Discord |
 | magic_string | the prefix the bot responds to |
+| guild | the Discord server to operate in |
+| channel | the server channel to operate in |
 
 #### Operation
 
@@ -75,7 +78,7 @@ will appear in the Discord channel.
 
 ### MIT License
 
-Copyright (c) 2019, Mark Brooker
+Copyright (c) 2019, Mark Brooker <mark@walkjivefly.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
